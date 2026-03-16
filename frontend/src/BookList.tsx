@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import type { Book } from './types/Book';
+
 function BookList() {
   // State variable to hold the list of books, initialized as an empty array.
   const [books, setBooks] = useState<Book[]>([]);
@@ -29,91 +30,119 @@ function BookList() {
   }, [pageSize, pageNum, sortOrder]);
 
   return (
-    // Display the data from the database
     <>
-      <section>
-        <h1>Bookstore</h1>
+      <section className='container my-5'>
+        <div className='row justify-content-center'>
+          <div className='col-lg-11'>
+            <div className='card shadow-sm border-0'>
+              <div className='card-body p-4'>
+                <div className='d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3'>
+                  <div>
+                    <h1 className='display-6 fw-bold mb-1'>Bookstore</h1>
+                    
+                  </div>
 
-        <button
-          onClick={() => {
-            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-            setPageNum(1);
-          }}
-        >
-          Sort by Title: {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
-        </button>
+                  <button
+                    className='btn btn-outline-primary'
+                    onClick={() => {
+                      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+                      setPageNum(1);
+                    }}
+                  >
+                    Sort by Title: {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
+                  </button>
+                </div>
 
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>ISBN</th>
-                <th>Classification</th>
-                <th>Category</th>
-                <th>Number of Pages</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {books.map((b) => (
-                <tr key={b.bookID}>
-                  <td>{b.title}</td>
-                  <td>{b.author}</td>
-                  <td>{b.publisher}</td>
-                  <td>{b.isbn}</td>
-                  <td>{b.classification}</td>
-                  <td>{b.category}</td>
-                  <td>{b.pageCount}</td>
-                  <td>${b.price.toFixed(2)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                <div className='d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3'>
+                  <div className='text-muted'>
+                    Total Books: <span className='fw-semibold'>{totalItems}</span>
+                  </div>
+
+                  <div className='d-flex align-items-center gap-2'>
+                    <label htmlFor='pageSize' className='form-label mb-0 fw-semibold'>
+                      Results per page:
+                    </label>
+                    <select
+                      id='pageSize'
+                      className='form-select w-auto'
+                      value={pageSize}
+                      onChange={(p) => {
+                        setPageSize(Number(p.target.value));
+                        setPageNum(1);
+                      }}
+                    >
+                      <option value='5'>5</option>
+                      <option value='10'>10</option>
+                      <option value='15'>15</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className='table-responsive'>
+                  <table className='table table-striped table-hover align-middle'>
+                    <thead className='table-dark'>
+                      <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>ISBN</th>
+                        <th>Classification</th>
+                        <th>Category</th>
+                        <th>Number of Pages</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {books.map((b) => (
+                        <tr key={b.bookID}>
+                          <td className='fw-semibold'>{b.title}</td>
+                          <td>{b.author}</td>
+                          <td>{b.publisher}</td>
+                          <td>{b.isbn}</td>
+                          <td>{b.classification}</td>
+                          <td>{b.category}</td>
+                          <td>{b.pageCount}</td>
+                          <td>${b.price.toFixed(2)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className='d-flex flex-wrap justify-content-center align-items-center gap-2 mt-4'>
+                  <button
+                    className='btn btn-outline-secondary'
+                    disabled={pageNum === 1}
+                    onClick={() => setPageNum(pageNum - 1)}
+                  >
+                    Previous
+                  </button>
+
+                  {[...Array(totalPages)].map((_, i) => (
+                    <button
+                      className={`btn ${
+                        pageNum === i + 1 ? 'btn-primary' : 'btn-outline-primary'
+                      }`}
+                      key={i + 1}
+                      onClick={() => setPageNum(i + 1)}
+                      disabled={pageNum === i + 1}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+
+                  <button
+                    className='btn btn-outline-secondary'
+                    disabled={pageNum === totalPages}
+                    onClick={() => setPageNum(pageNum + 1)}
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <button
-          disabled={pageNum === 1}
-          onClick={() => setPageNum(pageNum - 1)}
-        >
-          Previous
-        </button>
-
-        {[...Array(totalPages)].map((_, i) => (
-          <button
-            key={i + 1}
-            onClick={() => setPageNum(i + 1)}
-            disabled={pageNum === i + 1}
-          >
-            {i + 1}
-          </button>
-        ))}
-
-        <button
-          disabled={pageNum === totalPages}
-          onClick={() => setPageNum(pageNum + 1)}
-        >
-          Next
-        </button>
-
-        <br />
-
-        <label>
-          Results per page:
-          <select
-            value={pageSize}
-            onChange={(p) => {
-              setPageSize(Number(p.target.value));
-              setPageNum(1);
-            }}
-          >
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-          </select>
-        </label>
       </section>
     </>
   );
