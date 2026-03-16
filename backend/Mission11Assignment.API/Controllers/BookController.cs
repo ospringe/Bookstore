@@ -18,8 +18,10 @@ namespace Mission11Assignment.API.Controllers
         [HttpGet("AllBooks")]
         public IActionResult GetBooks(int pageSize = 5, int pageNum = 1, string sortOrder = "asc")
         {
+            // Start building the query for books
             var query = _bookContext.Books.AsQueryable();
 
+            // Sort books by title depending on the sortOrder parameter
             if (sortOrder == "asc")
             {
                 query = query.OrderBy(b => b.Title);
@@ -29,6 +31,7 @@ namespace Mission11Assignment.API.Controllers
                 query = query.OrderByDescending(b => b.Title);
             }
             
+            // Pagination: skip previous pages and take only the books for the current page
             var books = query
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
@@ -36,6 +39,7 @@ namespace Mission11Assignment.API.Controllers
             
             var totalNumBooks = _bookContext.Books.Count();
             
+            // Create an object to send both the books and the total count to the frontend
             var someObject = (new
             {
                 Books = books,
