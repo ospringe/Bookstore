@@ -11,26 +11,37 @@ function BookList() {
   const [totalItems, setTotalItems] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
 
+  const [sortOrder, setSortOrder] = useState<string>('asc');
+
   // Fetch the list of books from the API when the component mounts and update the state with the retrieved data.
   useEffect(() => {
     const fetchBooks = async () => {
       const response = await fetch(
-        `https://localhost:5000/api/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}`
+        `https://localhost:5000/api/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}`
       );
       const data = await response.json();
       setBooks(data.books);
       setTotalItems(data.totalNumBooks);
-      setTotalPages(Math.ceil(totalItems / pageSize));
+      setTotalPages(Math.ceil(data.totalNumBooks / pageSize));
     };
 
     fetchBooks();
-  }, [pageSize, pageNum, totalItems]);
+  }, [pageSize, pageNum, sortOrder]);
 
   return (
     // Display the data from the database
     <>
       <section>
         <h1>Bookstore</h1>
+
+        <button
+          onClick={() => {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+            setPageNum(1);
+          }}
+        >
+          Sort by Title: {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
+        </button>
 
         <div>
           <table>
@@ -48,7 +59,7 @@ function BookList() {
             </thead>
             <tbody>
               {books.map((b) => (
-                <tr>
+                <tr key={b.bookID}>
                   <td>{b.title}</td>
                   <td>{b.author}</td>
                   <td>{b.publisher}</td>
@@ -56,7 +67,7 @@ function BookList() {
                   <td>{b.classification}</td>
                   <td>{b.category}</td>
                   <td>{b.pageCount}</td>
-                  <td>{b.price}</td>
+                  <td>${b.price.toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>

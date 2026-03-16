@@ -16,9 +16,20 @@ namespace Mission11Assignment.API.Controllers
         }
 
         [HttpGet("AllBooks")]
-        public IActionResult GetBooks(int pageSize = 5, int pageNum = 1)
+        public IActionResult GetBooks(int pageSize = 5, int pageNum = 1, string sortOrder = "asc")
         {
-            var something = _bookContext.Books
+            var query = _bookContext.Books.AsQueryable();
+
+            if (sortOrder == "asc")
+            {
+                query = query.OrderBy(b => b.Title);
+            }
+            else
+            {
+                query = query.OrderByDescending(b => b.Title);
+            }
+            
+            var books = query
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
@@ -27,7 +38,7 @@ namespace Mission11Assignment.API.Controllers
             
             var someObject = (new
             {
-                Books = something,
+                Books = books,
                 TotalNumBooks = totalNumBooks
             });
 
