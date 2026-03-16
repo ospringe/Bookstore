@@ -36,7 +36,7 @@ function BookList() {
                             <th>ISBN</th>
                             <th>Classification</th>
                             <th>Category</th>
-                            <th>Page Count</th>
+                            <th>Number of Pages</th>
                             <th>Price</th>
                         </tr>
                     </thead>
@@ -58,6 +58,17 @@ function BookList() {
             </div>
 
         </section>
+
+        <br />
+
+        <label>
+            Results per page:
+            <select>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+        </label>
         </>
     );
 }
