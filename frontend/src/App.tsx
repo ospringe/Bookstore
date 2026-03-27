@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import './App.css';
-import BookList from './BookList';
-import CategoryFilter from './CategoryFilter';
+import BooksPage from './pages/BooksPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CartPage from './pages/CartPage';
 
 function App() {
-  // Categories that are selected from the checkboxes and are being used to filter the book list
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-
   return (
     <>
-      <CategoryFilter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}/>
-      <BookList selectedCategories={selectedCategories}/>
+      <Router>
+        <Routes>
+          <Route path="/" element={<BooksPage />} />
+          <Route path="/books" element={<BooksPage />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }

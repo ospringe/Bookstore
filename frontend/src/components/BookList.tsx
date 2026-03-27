@@ -1,7 +1,8 @@
 // This component fetches a list of books and then displays them.
 
 import { useEffect, useState } from 'react';
-import type { Book } from './types/Book';
+import type { Book } from '../types/Book';
+import { useNavigate } from 'react-router-dom';
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   // State variable to hold the list of books, initialized as an empty array.
@@ -13,6 +14,8 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [totalPages, setTotalPages] = useState<number>(0);
 
   const [sortOrder, setSortOrder] = useState<string>('asc');
+
+  const navigate = useNavigate();
 
   // Fetch books whenever page size, page number, or sorting changes
   useEffect(() => {
@@ -107,6 +110,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                         <th>Category</th>
                         <th>Number of Pages</th>
                         <th>Price</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -121,6 +125,12 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                           <td>{b.category}</td>
                           <td>{b.pageCount}</td>
                           <td>${b.price.toFixed(2)}</td>
+                          <td>
+                            <button className="btn btn-dark"
+                            onClick={() => navigate(`/cart`)}>
+                              Add to Cart
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
