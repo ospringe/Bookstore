@@ -16,11 +16,16 @@ namespace Mission11Assignment.API.Controllers
         }
 
         [HttpGet("AllBooks")]
-        public IActionResult GetBooks(int pageSize = 5, int pageNum = 1, string sortOrder = "asc")
+        public IActionResult GetBooks(int pageSize = 5, int pageNum = 1, string sortOrder = "asc", [FromQuery] List<string>? category = null)
         {
             // Start building the query for books
             var query = _bookContext.Books.AsQueryable();
 
+            if (category != null && category.Any())
+            {
+                query = query.Where(c => category.Contains(c.Category));
+            }
+            
             // Sort books by title depending on the sortOrder parameter
             if (sortOrder == "asc")
             {
@@ -37,7 +42,7 @@ namespace Mission11Assignment.API.Controllers
                 .Take(pageSize)
                 .ToList();
             
-            var totalNumBooks = _bookContext.Books.Count();
+            var totalNumBooks = query.Count();
             
             // Create an object to send both the books and the total count to the frontend
             var someObject = (new
@@ -47,6 +52,17 @@ namespace Mission11Assignment.API.Controllers
             });
 
             return Ok(someObject);
+        }
+
+        [HttpGet("GetBookCategories")]
+        public IActionResult GetBookCategories()
+        {
+            var bookCategories = _bookContext.Books
+                .Select(b => b.Category)
+                .Distinct()
+                .ToList();
+            
+            return Ok(bookCategories);
         }
     }
 }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { Book } from './types/Book';
 
-function BookList() {
+function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   // State variable to hold the list of books, initialized as an empty array.
   const [books, setBooks] = useState<Book[]>([]);
 
@@ -17,8 +17,12 @@ function BookList() {
   // Fetch books whenever page size, page number, or sorting changes
   useEffect(() => {
     const fetchBooks = async () => {
+      const categoryParams = selectedCategories
+        .map((cat) => `category=${encodeURIComponent(cat)}`)
+        .join('&');
+
       const response = await fetch(
-        `https://localhost:5000/api/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}`
+        `https://localhost:5000/api/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}${categoryParams ? `&${categoryParams}` : ''}`
       );
       const data = await response.json();
 
@@ -33,7 +37,7 @@ function BookList() {
     };
 
     fetchBooks();
-  }, [pageSize, pageNum, sortOrder]);
+  }, [pageSize, pageNum, sortOrder, selectedCategories]);
 
   return (
     <>

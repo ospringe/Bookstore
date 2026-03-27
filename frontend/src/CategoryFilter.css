@@ -1,0 +1,49 @@
+.category-card {
+  border-radius: 16px;
+  border: 1px solid #e9ecef;
+  max-width: 360px;
+}
+
+.category-card .card-title {
+  font-weight: 600;
+}
+
+.category-list {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.category-item {
+  cursor: pointer;
+  padding: 14px 16px;
+  border: none;
+  border-bottom: 1px solid #eceff1;
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.category-item:last-child {
+  border-bottom: none;
+}
+
+.category-item:hover {
+  background-color: #f5f5f5;
+}
+
+.category-checkbox {
+  cursor: pointer;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+.category-label {
+  cursor: pointer;
+  font-size: 1.05rem;
+}
+
+.category-item:has(.category-checkbox:checked) {
+  background-color: #f1f3f5;
+}
