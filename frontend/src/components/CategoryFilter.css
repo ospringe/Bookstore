@@ -1,11 +1,12 @@
 .category-card {
   border-radius: 16px;
   border: 1px solid #e9ecef;
-  max-width: 360px;
+  width: 100%;
 }
 
 .category-card .card-title {
   font-weight: 600;
+  text-align: center;
 }
 
 .category-list {
@@ -18,9 +19,8 @@
   padding: 14px 16px;
   border: none;
   border-bottom: 1px solid #eceff1;
-  transition:
-    background-color 0.25s ease,
-    transform 0.2s ease;
+  transition: background-color 0.25s ease;
+  width: 100%;
 }
 
 .category-item:last-child {
@@ -42,6 +42,8 @@
 .category-label {
   cursor: pointer;
   font-size: 1.05rem;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .category-item:has(.category-checkbox:checked) {

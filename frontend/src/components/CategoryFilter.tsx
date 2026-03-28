@@ -37,7 +37,7 @@ function CategoryFilter({
   }
 
   return (
-    <div className="card shadow-sm p-3 category-card">
+    <div className="card shadow-sm p-3 category-card my-5">
       <h5 className="card-title mb-3">Book Categories</h5>
 
       <div className="list-group category-list">

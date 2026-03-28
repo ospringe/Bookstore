@@ -16,18 +16,18 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   const [sortOrder, setSortOrder] = useState<string>('asc');
 
   const navigate = useNavigate();
-  const {addToCart} = useCart();
+  const { addToCart } = useCart();
 
   const handleAddToCart = (book: Book) => {
     const newItem: CartItem = {
       bookID: book.bookID,
       title: book.title || 'No Book Found',
       price: book.price || 0,
-      quantity: 1,}
-      addToCart(newItem);
-      navigate(`/cart`);
-    }
-  
+      quantity: 1,
+    };
+    addToCart(newItem);
+    navigate(`/cart`);
+  };
 
   // Fetch books whenever page size, page number, or sorting changes
   useEffect(() => {
@@ -111,7 +111,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                 </div>
 
                 <div className="table-responsive">
-                  <table className="table table-striped table-hover align-middle">
+                  <table className="table table-sm table-striped table-hover align-middle small">
                     <thead className="table-dark">
                       <tr>
                         <th>Title</th>
@@ -120,7 +120,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                         <th>ISBN</th>
                         <th>Classification</th>
                         <th>Category</th>
-                        <th>Number of Pages</th>
+                        <th>Pages</th>
                         <th>Price</th>
                         <th></th>
                       </tr>
@@ -129,17 +129,19 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                       {/* map() loops through each book and creates a table row */}
                       {books.map((b) => (
                         <tr key={b.bookID}>
-                          <td className="fw-semibold">{b.title}</td>
-                          <td>{b.author}</td>
-                          <td>{b.publisher}</td>
-                          <td>{b.isbn}</td>
-                          <td>{b.classification}</td>
-                          <td>{b.category}</td>
-                          <td>{b.pageCount}</td>
-                          <td>${b.price.toFixed(2)}</td>
-                          <td>
-                            <button className="btn btn-dark"
-                            onClick={() => handleAddToCart(b)}>
+                          <td className="fw-semibold text-nowrap">{b.title}</td>
+                          <td className="text-nowrap">{b.author}</td>
+                          <td className="text-nowrap">{b.publisher}</td>
+                          <td className="text-nowrap">{b.isbn}</td>
+                          <td className="text-nowrap">{b.classification}</td>
+                          <td className="text-nowrap">{b.category}</td>
+                          <td className="text-nowrap">{b.pageCount}</td>
+                          <td className="text-nowrap">${b.price.toFixed(2)}</td>
+                          <td className="text-nowrap">
+                            <button
+                              className="btn btn-sm btn-dark"
+                              onClick={() => handleAddToCart(b)}
+                            >
                               Add to Cart
                             </button>
                           </td>
