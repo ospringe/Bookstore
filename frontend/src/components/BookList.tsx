@@ -1,9 +1,10 @@
-// This component fetches a list of books and then displays them.
-
 import { useEffect, useState } from 'react';
-import type { Book } from './types/Book';
+import type { Book } from '../types/Book';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import type { CartItem } from '../types/CartItem';
 
-function BookList() {
+function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   // State variable to hold the list of books, initialized as an empty array.
   const [books, setBooks] = useState<Book[]>([]);
 
@@ -14,11 +15,29 @@ function BookList() {
 
   const [sortOrder, setSortOrder] = useState<string>('asc');
 
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (book: Book) => {
+    const newItem: CartItem = {
+      bookID: book.bookID,
+      title: book.title || 'No Book Found',
+      price: book.price || 0,
+      quantity: 1,
+    };
+    addToCart(newItem);
+    navigate(`/cart`);
+  };
+
   // Fetch books whenever page size, page number, or sorting changes
   useEffect(() => {
     const fetchBooks = async () => {
+      const categoryParams = selectedCategories
+        .map((cat) => `category=${encodeURIComponent(cat)}`)
+        .join('&');
+
       const response = await fetch(
-        `https://localhost:5000/api/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}`
+        `https://localhost:5000/api/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortOrder=${sortOrder}${categoryParams ? `&${categoryParams}` : ''}`
       );
       const data = await response.json();
 
@@ -33,7 +52,7 @@ function BookList() {
     };
 
     fetchBooks();
-  }, [pageSize, pageNum, sortOrder]);
+  }, [pageSize, pageNum, sortOrder, selectedCategories]);
 
   return (
     <>
@@ -92,7 +111,7 @@ function BookList() {
                 </div>
 
                 <div className="table-responsive">
-                  <table className="table table-striped table-hover align-middle">
+                  <table className="table table-sm table-striped table-hover align-middle small">
                     <thead className="table-dark">
                       <tr>
                         <th>Title</th>
@@ -101,22 +120,31 @@ function BookList() {
                         <th>ISBN</th>
                         <th>Classification</th>
                         <th>Category</th>
-                        <th>Number of Pages</th>
+                        <th>Pages</th>
                         <th>Price</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       {/* map() loops through each book and creates a table row */}
                       {books.map((b) => (
                         <tr key={b.bookID}>
-                          <td className="fw-semibold">{b.title}</td>
-                          <td>{b.author}</td>
-                          <td>{b.publisher}</td>
-                          <td>{b.isbn}</td>
-                          <td>{b.classification}</td>
-                          <td>{b.category}</td>
-                          <td>{b.pageCount}</td>
-                          <td>${b.price.toFixed(2)}</td>
+                          <td className="fw-semibold text-nowrap">{b.title}</td>
+                          <td className="text-nowrap">{b.author}</td>
+                          <td className="text-nowrap">{b.publisher}</td>
+                          <td className="text-nowrap">{b.isbn}</td>
+                          <td className="text-nowrap">{b.classification}</td>
+                          <td className="text-nowrap">{b.category}</td>
+                          <td className="text-nowrap">{b.pageCount}</td>
+                          <td className="text-nowrap">${b.price.toFixed(2)}</td>
+                          <td className="text-nowrap">
+                            <button
+                              className="btn btn-sm btn-dark"
+                              onClick={() => handleAddToCart(b)}
+                            >
+                              Add to Cart
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
