@@ -4,10 +4,13 @@ import { useCart } from '../context/CartContext';
 const CartSummary = () => {
   const navigate = useNavigate();
   const { cart } = useCart();
+
   const totalAmount = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div
@@ -21,12 +24,19 @@ const CartSummary = () => {
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
+        gap: '10px',
         boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
         fontSize: '16px',
       }}
       onClick={() => navigate('/cart')}
     >
-      🛒<strong>${totalAmount.toFixed(2)}</strong>
+      🛒
+      <span>
+        <strong>${totalAmount.toFixed(2)}</strong>
+      </span>
+      <span>
+        Qty: <strong>{totalQuantity}</strong>
+      </span>
     </div>
   );
 };
