@@ -17,6 +17,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((c) => c.bookID === item.bookID);
 
+      // If that item is already in the cart, increase the quantity; otherwise, add it to the cart
       if (existingItem) {
         return prevCart.map((c) =>
           c.bookID === item.bookID ? { ...c, quantity: c.quantity + 1 } : c
@@ -28,10 +29,12 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const removeFromCart = (bookID: number) => {
+    // Remove the item with the specified bookID from the cart
     setCart((prevCart) => prevCart.filter((item) => item.bookID !== bookID));
   };
 
   const clearCart = () => {
+    // Remove everything from the cart (by simply setting the cart to an empty array)
     setCart([]);
   };
 

@@ -6,6 +6,7 @@ function CartPage() {
   const navigate = useNavigate();
   const { cart, removeFromCart, clearCart } = useCart();
 
+  // Calculate the cart total
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
@@ -24,6 +25,7 @@ function CartPage() {
                 </button>
               </div>
 
+                {/* If there is nothing in the cart, show an alert; otherwise, show the cart items and order summary */}
               {cart.length === 0 ? (
                 <div className="alert alert-info" role="alert">
                   Your cart is empty.
@@ -47,6 +49,7 @@ function CartPage() {
                             <td className="fw-semibold">{item.title}</td>
                             <td>${item.price.toFixed(2)}</td>
                             <td>{item.quantity}</td>
+                            {/* Calculate the subtotal for each item by multiplying the price by the quantity */}
                             <td>${(item.price * item.quantity).toFixed(2)}</td>
                             <td className="text-end">
                               <button

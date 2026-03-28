@@ -41,6 +41,7 @@ function CategoryFilter({
       <h5 className="card-title mb-3">Book Categories</h5>
 
       <div className="list-group category-list">
+        {/* Display each of the categories for the filter */}
         {categories.map((c) => (
           <label
             key={c}
