@@ -36,104 +36,105 @@ const EditBookForm = ({ book, onSuccess, onCancel }: EditBookFormProps) => {
         <form onSubmit={handleSubmit}>
           <h2 className="mb-4 text-center">Update Book</h2>
 
-          {/* Title */}
-          <div className="mb-3">
-            <label className="form-label">Title</label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              className="form-control"
-            />
+          <div className="row">
+            {/* Title */}
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Title</label>
+              <input
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+
+            {/* Author */}
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Author</label>
+              <input
+                type="text"
+                name="author"
+                value={formData.author}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+
+            {/* Publisher */}
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Publisher</label>
+              <input
+                type="text"
+                name="publisher"
+                value={formData.publisher}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+
+            {/* ISBN */}
+            <div className="col-md-6 mb-3">
+              <label className="form-label">ISBN</label>
+              <input
+                type="text"
+                name="isbn"
+                value={formData.isbn}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+
+            {/* Classification */}
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Classification</label>
+              <input
+                type="text"
+                name="classification"
+                value={formData.classification}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+
+            {/* Category */}
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Category</label>
+              <input
+                type="text"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+
+            {/* Page Count */}
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Page Count</label>
+              <input
+                type="number"
+                name="pageCount"
+                value={formData.pageCount}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+
+            {/* Price */}
+            <div className="col-md-6 mb-4">
+              <label className="form-label">Price</label>
+              <input
+                type="number"
+                name="price"
+                value={formData.price}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
           </div>
 
-          {/* Author */}
-          <div className="mb-3">
-            <label className="form-label">Author</label>
-            <input
-              type="text"
-              name="author"
-              value={formData.author}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
-
-          {/* Publisher */}
-          <div className="mb-3">
-            <label className="form-label">Publisher</label>
-            <input
-              type="text"
-              name="publisher"
-              value={formData.publisher}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
-
-          {/* ISBN */}
-          <div className="mb-3">
-            <label className="form-label">ISBN</label>
-            <input
-              type="text"
-              name="isbn"
-              value={formData.isbn}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
-
-          {/* Classification */}
-          <div className="mb-3">
-            <label className="form-label">Classification</label>
-            <input
-              type="text"
-              name="classification"
-              value={formData.classification}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
-
-          {/* Category */}
-          <div className="mb-3">
-            <label className="form-label">Category</label>
-            <input
-              type="text"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
-
-          {/* Page Count */}
-          <div className="mb-3">
-            <label className="form-label">Page Count</label>
-            <input
-              type="number"
-              name="pageCount"
-              value={formData.pageCount}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
-
-          {/* Price */}
-          <div className="mb-4">
-            <label className="form-label">Price</label>
-            <input
-              type="number"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
-
-          {/* Buttons */}
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between mt-2">
             <button type="submit" className="btn btn-primary">
               Update Book
             </button>
