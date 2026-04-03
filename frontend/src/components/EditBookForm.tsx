@@ -31,105 +31,124 @@ const EditBookForm = ({ book, onSuccess, onCancel }: EditBookFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add New Book</h2>
+    <div className="container mt-4">
+      <div className="card shadow-sm p-4">
+        <form onSubmit={handleSubmit}>
+          <h2 className="mb-4 text-center">Update Book</h2>
 
-      {/* Input for title */}
-      <label>
-        Title:
-        <input
-          type="text"
-          name="title" // must match property name
-          value={formData.title}
-          onChange={handleChange}
-        ></input>
-      </label>
+          {/* Title */}
+          <div className="mb-3">
+            <label className="form-label">Title</label>
+            <input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      {/* Input for author */}
-      <label>
-        Author:
-        <input
-          type="text"
-          name="author"
-          value={formData.author}
-          onChange={handleChange}
-        ></input>
-      </label>
+          {/* Author */}
+          <div className="mb-3">
+            <label className="form-label">Author</label>
+            <input
+              type="text"
+              name="author"
+              value={formData.author}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      {/* Input for publisher */}
-      <label>
-        Publisher:
-        <input
-          type="text"
-          name="publisher"
-          value={formData.publisher}
-          onChange={handleChange}
-        ></input>
-      </label>
+          {/* Publisher */}
+          <div className="mb-3">
+            <label className="form-label">Publisher</label>
+            <input
+              type="text"
+              name="publisher"
+              value={formData.publisher}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      {/* Input for ISBN */}
-      <label>
-        ISBN:
-        <input
-          type="text"
-          name="isbn"
-          value={formData.isbn}
-          onChange={handleChange}
-        ></input>
-      </label>
+          {/* ISBN */}
+          <div className="mb-3">
+            <label className="form-label">ISBN</label>
+            <input
+              type="text"
+              name="isbn"
+              value={formData.isbn}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      {/* Input for classification */}
-      <label>
-        Classification:
-        <input
-          type="text"
-          name="classification"
-          value={formData.classification}
-          onChange={handleChange}
-        ></input>
-      </label>
+          {/* Classification */}
+          <div className="mb-3">
+            <label className="form-label">Classification</label>
+            <input
+              type="text"
+              name="classification"
+              value={formData.classification}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      {/* Input for category */}
-      <label>
-        Category:
-        <input
-          type="text"
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-        ></input>
-      </label>
+          {/* Category */}
+          <div className="mb-3">
+            <label className="form-label">Category</label>
+            <input
+              type="text"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      {/* Input for page count */}
-      <label>
-        Page Count:
-        <input
-          type="number"
-          name="pageCount"
-          value={formData.pageCount}
-          onChange={handleChange}
-        ></input>
-      </label>
+          {/* Page Count */}
+          <div className="mb-3">
+            <label className="form-label">Page Count</label>
+            <input
+              type="number"
+              name="pageCount"
+              value={formData.pageCount}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      {/* Input for price */}
-      <label>
-        Price:
-        <input
-          type="number"
-          name="price"
-          value={formData.price}
-          onChange={handleChange}
-        ></input>
-      </label>
+          {/* Price */}
+          <div className="mb-4">
+            <label className="form-label">Price</label>
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-      {/* Submit button */}
-      <button type="submit">Update Book</button>
+          {/* Buttons */}
+          <div className="d-flex justify-content-between">
+            <button type="submit" className="btn btn-primary">
+              Update Book
+            </button>
 
-      {/* Cancel button */}
-      <button type="button" onClick={onCancel}>
-        Cancel
-      </button>
-    </form>
+            <button
+              type="button"
+              onClick={onCancel}
+              className="btn btn-secondary"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

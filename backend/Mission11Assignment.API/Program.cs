@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactAppBlah",
     policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:3000", "https://black-river-0d374ae1e.2.azurestaticapps.net")
               .AllowAnyHeader()
               .AllowAnyMethod();
     }));

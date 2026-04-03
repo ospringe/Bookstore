@@ -255,3 +255,9 @@
 /Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/Bookstore.sqlite
+/Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/publish/web.config
+/Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/publish/appsettings.Development.json
+/Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/publish/appsettings.json
+/Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/publish/Mission11Assignment.API.deps.json
+/Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/publish/Mission11Assignment.API.runtimeconfig.json
+/Users/oliviaspringer/Library/CloudStorage/OneDrive-BrighamYoungUniversity/Winter 2026/IS 413/Assignments/Mission11Assignment/backend/Mission11Assignment.API/bin/Debug/net8.0/publish/Mission11Assignment.API.staticwebassets.endpoints.json
