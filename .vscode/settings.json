@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/bb2aae00-2116-4fb8-a2a8-f115842dff5c/resourceGroups/appsvc_windows_francecentral/providers/Microsoft.Web/sites/Bookstore-Springer-Backend",
+  "appService.deploySubpath": "backend/Mission11Assignment.API/publish"
+}

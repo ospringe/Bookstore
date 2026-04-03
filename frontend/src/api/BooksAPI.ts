@@ -7,7 +7,7 @@ interface FetchBooksResponse {
 }
 
 // Base URL for API
-const API_URL = 'https://localhost:5000/api/Book';
+const API_URL = 'https://bookstore-springer-backend-hthvcxgxgwcmhxhb.francecentral-01.azurewebsites.net/api/Book';
 
 // Function to GET books from API
 export const fetchBooks = async (
